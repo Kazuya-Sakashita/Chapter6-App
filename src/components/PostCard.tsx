@@ -29,9 +29,7 @@ const PostCard = ({ post }) => {
       </div>
 
       {/* タイトル */}
-      <h2 className="text-xl font-bold mt-4 mb-2 truncate text-left">
-        {post.title}
-      </h2>
+      <h2 className="text-2xl mt-4 mb-2 truncate text-left">{post.title}</h2>
 
       {/* 内容 */}
       <p className="text-gray-600 mt-2 line-clamp-2">{post.content}</p>
