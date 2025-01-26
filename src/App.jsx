@@ -1,21 +1,24 @@
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import PostCard from "./components/PostCard";
 import posts from "./data/posts";
 import "./index.css";
+import Layout from "./components/Layout";
+import PostDetail from "./pages/PostDetail";
+import PostList from "./pages/PostList";
 
 function App() {
   return (
-    <div>
-      {/* 投稿一覧 */}
-      <Link to="/">
-        <main className="container mx-auto p-4">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </main>
-      </Link>
-    </div>
+    <>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            {/* 記事詳細ページ */}
+            <Route path="/posts/:id" element={<PostDetail posts={posts} />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PostCard = ({ post, disableLink = false }) => {
+const PostCard = ({ post, isDetail = false }) => {
   // 日付をフォーマットする関数
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -34,15 +34,15 @@ const PostCard = ({ post, disableLink = false }) => {
       <h2 className="text-2xl mt-4 mb-2 truncate text-left">{post.title}</h2>
 
       {/* 内容 */}
-      <p className={`text-gray-600 mt-2 ${disableLink ? "" : "line-clamp-2"}`}>
+      <p className={`text-gray-600 mt-2 ${isDetail ? "" : "line-clamp-2"}`}>
         {post.content}
       </p>
     </>
   );
 
   return (
-    <div className={`bg-white ${disableLink ? "" : " p-4 border mt-8"}`}>
-      {disableLink ? (
+    <div className={`bg-white ${isDetail ? "" : " p-4 border mt-8"}`}>
+      {isDetail ? (
         <div>{content}</div>
       ) : (
         <Link to={`/posts/${post.id}`} className="block">

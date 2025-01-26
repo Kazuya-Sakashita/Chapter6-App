@@ -17,7 +17,7 @@ const PostDetail = () => {
 
       {/* 本文(Cardを利用) */}
       <div className="container mx-auto p-4">
-        <PostCard post={post} disableLink={true} />
+        <PostCard post={post} isDetail={true} />
       </div>
     </div>
   );
