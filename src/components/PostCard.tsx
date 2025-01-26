@@ -34,17 +34,21 @@ const PostCard = ({ post, isDetail = false }) => {
       <h2 className="text-2xl mt-4 mb-2 truncate text-left">{post.title}</h2>
 
       {/* 内容 */}
+      {/* 詳細表示の場合は、コンテントを全て表示させる */}
       <p className={`text-gray-600 mt-2 ${isDetail ? "" : "line-clamp-2"}`}>
         {post.content}
       </p>
     </>
   );
 
+  // リンクの有無で構造を切り替える
   return (
     <div className={`bg-white ${isDetail ? "" : " p-4 border mt-8"}`}>
       {isDetail ? (
+        // リンクを無効時の場合
         <div>{content}</div>
       ) : (
+        // リンク有効時の構造
         <Link to={`/posts/${post.id}`} className="block">
           {content}
         </Link>
@@ -52,5 +56,4 @@ const PostCard = ({ post, isDetail = false }) => {
     </div>
   );
 };
-
 export default PostCard;
