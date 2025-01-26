@@ -7,12 +7,24 @@ const PostList = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(
-        "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts"
-      );
-      const data = await response.json();
-      setPosts(data.posts);
-      setLoading(false);
+      try {
+        // データの取得開始
+        const response = await fetch(
+          "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts"
+        );
+
+        // レスポンスがエラーの場合は例外をスロー
+        if (!response.ok) {
+          throw new Error("データの取得に失敗しました");
+        }
+
+        const data = await response.json();
+        setPosts(data.posts); // データをステートに保存
+      } catch (error) {
+        console.error("エラー:", error.message); // エラーをコンソールに表示
+      } finally {
+        setLoading(false); // ローディング状態を解除
+      }
     };
 
     fetchPosts();
