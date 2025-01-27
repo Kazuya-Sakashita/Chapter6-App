@@ -28,6 +28,7 @@ const ContactForm = () => {
           <div className="w-full">
             <input
               id="name"
+              disabled={isSubmitting}
               className={`border border-gray-300 rounded-lg p-4 w-full ${
                 errors.name ? "border-red-500" : "border-gray-300"
               }`}
@@ -54,6 +55,7 @@ const ContactForm = () => {
             <input
               id="email"
               type="email"
+              disabled={isSubmitting}
               className={`border border-gray-300 rounded-lg p-4 w-full ${
                 errors.email ? "border-red-500" : "border-gray-300"
               }`}
@@ -82,6 +84,7 @@ const ContactForm = () => {
             <textarea
               id="message"
               rows="8"
+              disabled={isSubmitting}
               className={`w-full border border-gray-300 rounded-lg p-4 ${
                 errors.message ? "border-red-500" : "border-gray-300"
               }`}
@@ -115,6 +118,7 @@ const ContactForm = () => {
           <button
             type="button"
             onClick={() => reset()}
+            disabled={isSubmitting}
             className="py-3 px-6 font-bold text-gray-800 bg-gray-200 hover:bg-gray-300 rounded-lg shadow-lg transition-all"
           >
             クリア
