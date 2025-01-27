@@ -9,7 +9,9 @@ const Navbar = () => {
           Blog
         </Link>
         <ul>
-          <li className="text-base font-bold">お問い合わせ</li>
+          <Link to="/contact" className="text-base font-bold">
+            問い合わせ
+          </Link>
         </ul>
       </div>
     </nav>
