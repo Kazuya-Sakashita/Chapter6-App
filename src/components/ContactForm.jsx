@@ -7,13 +7,38 @@ const ContactForm = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    mode: "onSubmit", // バリデーションを送信時に実施
+    mode: "onSubmit", // バリデーションは送信時に実施
   });
 
-  const onSubmit = (data) => {
-    console.log("送信データ:", data);
-    alert("送信しました！");
-    reset(); // フォームをクリア
+  const onSubmit = async (data) => {
+    try {
+      console.log("送信データ:", data);
+
+      // API送信
+      const response = await fetch(
+        "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("送信に失敗しました。");
+      }
+
+      const result = await response.json();
+      console.log("APIレスポンス:", result);
+
+      alert("送信しました！");
+      reset(); // フォームをクリア
+    } catch (error) {
+      console.error("送信エラー:", error);
+      alert("送信中にエラーが発生しました。もう一度お試しください。");
+    }
   };
 
   return (
