@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const PostCard = ({ post, isDetail = false }) => {
   // 日付をフォーマットする関数
@@ -54,5 +55,16 @@ const PostCard = ({ post, isDetail = false }) => {
       )}
     </div>
   );
+};
+
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired, // post の ID は必須
+    title: PropTypes.string.isRequired, // post のタイトルは必須
+    content: PropTypes.string.isRequired, // post の内容は必須
+    createdAt: PropTypes.string.isRequired, // 日付は ISO 文字列として必須
+    categories: PropTypes.arrayOf(PropTypes.string), // categories は文字列配列（任意）
+  }).isRequired,
+  isDetail: PropTypes.bool, // isDetail はオプションで boolean 型
 };
 export default PostCard;
